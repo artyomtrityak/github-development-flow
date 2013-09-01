@@ -31,8 +31,8 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="github-development-flow" class="anchor" href="#github-development-flow"><span class="octicon octicon-link"></span></a>Github development flow</h3>
+        <h2>
+<a name="github-development-flow" class="anchor" href="#github-development-flow"><span class="octicon octicon-link"></span></a>Github development flow</h2>
 
 <p>Here is development flow i am working with 12 people team through github.</p>
 
@@ -43,29 +43,29 @@
 
 <p>So in the beginning <strong>master</strong> and <strong>dev</strong> branches are same.</p>
 
-<ol>
-<li>If developer wants to start new feature / fix, he should switch to <strong>dev</strong> branch and get latest version:</li>
-</ol><pre><code>git checkout dev
+<p>1) If developer wants to start new feature / fix, he should switch to <strong>dev</strong> branch and get latest version:</p>
+
+<pre><code>git checkout dev
 git pull origin dev
 </code></pre>
 
-<ol>
-<li>Ok, we want to start login page bugfix. Issue number in github is #1234.
-This case we should create new branch from <strong>dev</strong> branch.</li>
-</ol><pre><code>git checkout -b 1234-bug-login
+<p>2) Ok, we want to start login page bugfix. Issue number in github is #1234.
+This case we should create new branch from <strong>dev</strong> branch.</p>
+
+<pre><code>git checkout -b 1234-bug-login
 </code></pre>
 
 <p><code>bug-login</code> is only example. First word should be <code>bug</code> or <code>feature</code>. Branch has been created locally.</p>
 
-<ol>
-<li>Then developer will work with code locally, make changes, commits etc. Commits messages should contain issue number and technical description:</li>
-</ol><pre><code>git add ...list of files...
+<p>3) Then developer will work with code locally, make changes, commits etc. Commits messages should contain issue number and technical description:</p>
+
+<pre><code>git add ...list of files...
 git commit -m "#1234 changing backbone model url"
 </code></pre>
 
-<ol>
-<li>Development finished, we need to push changes to github.</li>
-</ol><pre><code>git push origin 1234-bug-login
+<p>4) Development finished, we need to push changes to github.</p>
+
+<pre><code>git push origin 1234-bug-login
 </code></pre>
 
 <p>Ok, changes are in repository, now developer should merge (rebase) his changes with development changes to be able merge to <strong>dev</strong> branch without conflicts.</p>
@@ -83,25 +83,31 @@ git rebase dev
 git push -f origin 1234-bug-login
 </code></pre>
 
-<ol>
-<li><p>Great! Now changes are in repository and developer should <strong>Create pull request</strong> from <strong>1234-bug-login</strong> to <strong>dev</strong> branch in github.</p></li>
-<li><p>Pull request done, anyone (~same level) can review it, write comments etc. Comments should be fixed and pushed to <code>1234-bug-login</code> branch. Pull request will be updated automatically.</p></li>
-<li><p>Sometimes other branches have been merge to <strong>dev</strong> and <code>1234-bug-login</code> branch is out of date. This case developer just make rebase again and push again.</p></li>
-<li><p>Perfect! If all fixes were done and someone wrote <code>merge it</code> in pull request, developer uses <strong>Merge pull request</strong> button to merge branch into <strong>dev</strong> .</p></li>
-</ol><h3>
+<p>5) Great! Now changes are in repository and developer should <strong>Create pull request</strong> from <strong>1234-bug-login</strong> to <strong>dev</strong> branch in github.</p>
+
+<p>6) Pull request done, anyone (~same level) can review it, write comments etc. Comments should be fixed and pushed to <code>1234-bug-login</code> branch. Pull request will be updated automatically.</p>
+
+<p>7) Sometimes other branches have been merge to <strong>dev</strong> and <code>1234-bug-login</code> branch is out of date. This case developer just make rebase again and push again.</p>
+
+<p>8) Perfect! If all fixes were done and someone wrote <code>merge it</code> in pull request, developer uses <strong>Merge pull request</strong> button to merge branch into <strong>dev</strong> .</p>
+
+<h3>
 <a name="testing" class="anchor" href="#testing"><span class="octicon octicon-link"></span></a>Testing</h3>
 
-<ol>
-<li><p>Once <code>1234-bug-login</code> in <strong>dev</strong> branch, Jenkins automatically deploying latest <strong>dev</strong> branch to <strong>dev server</strong> for testing. QA will verify or reopen issue.</p></li>
-<li><p>If pull request is big, developer / lead can deploy <code>1234-bug-login</code> branch to <strong>QA server</strong> before merging pull request.</p></li>
-</ol><h3>
+<p>9) Once <code>1234-bug-login</code> in <strong>dev</strong> branch, Jenkins automatically deploying latest <strong>dev</strong> branch to <strong>dev server</strong> for testing. QA will verify or reopen issue.</p>
+
+<p>10) If pull request is big, developer / lead can deploy <code>1234-bug-login</code> branch to <strong>QA server</strong> before merging pull request.</p>
+
+<h3>
 <a name="releasing" class="anchor" href="#releasing"><span class="octicon octicon-link"></span></a>Releasing</h3>
 
-<ol>
-<li><p>Before release <strong>dev</strong> is merging to <strong>master</strong> branch and deploying to <strong>QA server</strong>. Testers should make regression testing.</p></li>
-<li><p>If tests passed, deployment to production can be done, otherwise developers should make fixes directly to <strong>master</strong> branch.</p></li>
-<li><p>Ok, QA found few bugs which were fixed in <strong>master</strong>. Next step (after release) is merge hofixes from <strong>master</strong> to <strong>dev</strong></p></li>
-</ol><pre><code>git checkout master
+<p>11) Before release <strong>dev</strong> is merging to <strong>master</strong> branch and deploying to <strong>QA server</strong>. Testers should make regression testing.</p>
+
+<p>12) If tests passed, deployment to production can be done, otherwise developers should make fixes directly to <strong>master</strong> branch.</p>
+
+<p>13) Ok, QA found few bugs which were fixed in <strong>master</strong>. Next step (after release) is merge hofixes from <strong>master</strong> to <strong>dev</strong></p>
+
+<pre><code>git checkout master
 git pull origin master
 
 git checkout dev
