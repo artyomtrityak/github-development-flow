@@ -34,43 +34,40 @@
         <h2>
 <a name="github-development-flow" class="anchor" href="#github-development-flow"><span class="octicon octicon-link"></span></a>Github development flow</h2>
 
-<p>Here is development flow i am working with 12 people team through github.</p>
+<p>Here is the development flow which I use to work through github with the team of 12 people.
+There are 2 main branches in github: <strong>master</strong> and <strong>dev</strong> .</p>
 
-<p>There are 2 main branches in github: <strong>master</strong> and <strong>dev</strong> .</p>
+<p><strong>master</strong> is a stable branch ready for the release at any time. 
+<strong>dev</strong> is a branch that team works on till next update.</p>
 
-<p><strong>master</strong> is stable branch ready for release any moment.
-<strong>dev</strong> is branch team working on for next update.</p>
+<p>So at the beginning <strong>master</strong> and <strong>dev</strong> branches are the same.</p>
 
-<p>So in the beginning <strong>master</strong> and <strong>dev</strong> branches are same.</p>
-
-<p>1) If developer wants to start new feature / fix, he should switch to <strong>dev</strong> branch and get latest version:</p>
+<p>1) If developer wants to start a new feature / fix, he should switch to <strong>dev</strong> branch and get the latest version:</p>
 
 <pre><code>git checkout dev
 git pull origin dev
 </code></pre>
 
-<p>2) Ok, we want to start login page bugfix. Issue number in github is #1234.
-This case we should create new branch from <strong>dev</strong> branch.</p>
+<p>2) E.g., we want to start login page bugfix. In github an issue number is #1234. In this case we should create a new branch from <strong>dev</strong> branch.</p>
 
 <pre><code>git checkout -b 1234-bug-login
 </code></pre>
 
-<p><code>bug-login</code> is only example. First word should be <code>bug</code> or <code>feature</code>. Branch has been created locally.</p>
+<p><code>bug-login</code> is just an example. The first word should be <code>bug</code> or <code>feature</code>. Branch has been created locally.</p>
 
-<p>3) Then developer will work with code locally, make changes, commits etc. Commits messages should contain issue number and technical description:</p>
+<p>3) Then developer will work with code locally, make changes, commits etc. Commit messages should contain issue number and technical description:</p>
 
 <pre><code>git add ...list of files...
 git commit -m "#1234 changing backbone model url"
 </code></pre>
 
-<p>4) Development finished, we need to push changes to github.</p>
+<p>4) Development is finished, we need to push changes to github.</p>
 
 <pre><code>git push origin 1234-bug-login
 </code></pre>
 
-<p>Ok, changes are in repository, now developer should merge (rebase) his changes with development changes to be able merge to <strong>dev</strong> branch without conflicts.</p>
-
-<p>At first we should get latest copy of dev branch</p>
+<p>Now changes are in the repository, the developer should merge (rebase) his changes with development changes to be able to merge to <strong>dev</strong> branch without conflicts.
+At first we should get the latest copy of dev branch</p>
 
 <pre><code>git checkout dev
 git pull origin dev
@@ -83,18 +80,18 @@ git rebase dev
 git push -f origin 1234-bug-login
 </code></pre>
 
-<p>5) Great! Now changes are in repository and developer should <strong>Create pull request</strong> from <strong>1234-bug-login</strong> to <strong>dev</strong> branch in github.</p>
+<p>5) Great! Now changes are in the repository and the developer should <strong>Create pull request</strong> from <strong>1234-bug-login</strong> to <strong>dev</strong> branch in github.</p>
 
-<p>6) Pull request done, anyone (~same level) can review it, write comments etc. Comments should be fixed and pushed to <code>1234-bug-login</code> branch. Pull request will be updated automatically.</p>
+<p>6) Pull request is done, anyone (~same level) can review it, write comments etc. Comments should be fixed and pushed to <code>1234-bug-login</code> branch. Pull request will be updated automatically.</p>
 
-<p>7) Sometimes other branches have been merge to <strong>dev</strong> and <code>1234-bug-login</code> branch is out of date. This case developer just make rebase again and push again.</p>
+<p>7) Sometimes other branches have been merge to <strong>dev</strong> and <code>1234-bug-login</code> branch is out of date. In this case the developer just makes rebase and push again.</p>
 
 <p>8) Perfect! If all fixes were done and someone wrote <code>merge it</code> in pull request, developer uses <strong>Merge pull request</strong> button to merge branch into <strong>dev</strong> .</p>
 
 <h3>
 <a name="testing" class="anchor" href="#testing"><span class="octicon octicon-link"></span></a>Testing</h3>
 
-<p>9) Once <code>1234-bug-login</code> in <strong>dev</strong> branch, Jenkins automatically deploying latest <strong>dev</strong> branch to <strong>dev server</strong> for testing. QA will verify or reopen issue.</p>
+<p>9) Once <code>1234-bug-login</code> is in <strong>dev</strong> branch, Jenkins is automatically deploying the latest <strong>dev</strong> branch to <strong>dev server</strong> for testing. QA will verify or reopen issue.</p>
 
 <p>10) If pull request is big, developer / lead can deploy <code>1234-bug-login</code> branch to <strong>QA server</strong> before merging pull request.</p>
 
@@ -105,7 +102,7 @@ git push -f origin 1234-bug-login
 
 <p>12) If tests passed, deployment to production can be done, otherwise developers should make fixes directly to <strong>master</strong> branch.</p>
 
-<p>13) Ok, QA found few bugs which were fixed in <strong>master</strong>. Next step (after release) is merge hofixes from <strong>master</strong> to <strong>dev</strong></p>
+<p>13) E.g., QA found a few bugs which were fixed in <strong>master</strong>. Next step (after release) is to merge hofixes from <strong>master</strong> to <strong>dev</strong></p>
 
 <pre><code>git checkout master
 git pull origin master
@@ -118,7 +115,7 @@ git merge master
 git push origin dev
 </code></pre>
 
-<p>That's all. It can sound too complex but it fits well for any team.</p>
+<p>That's all. It can sound too complex, but it fits well for any team.</p>
       </section>
     </div>
 
